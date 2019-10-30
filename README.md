@@ -69,7 +69,7 @@ end
 
 ## History
 2019-10-30
-- Expanded tag support to provide access to all tags in the audio file. See this for details -> [TagLib PropertyMap Keys](https://taglib.org/api/classTagLib_1_1PropertyMap.html).
+- Expanded tag support to provide read and write access to all tags in the audio file. See this for details -> [TagLib PropertyMap Keys](https://taglib.org/api/classTagLib_1_1PropertyMap.html).
 - Exposed the audioProperties for the audio file
 
 ## License
