@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TagLibIOS'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'TagLibIOS is a wrapper for the TagLib Audio Meta-Data Library.'
 
   s.description      = <<-DESC

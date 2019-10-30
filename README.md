@@ -32,6 +32,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ```swift
 let audio = TLAudio(fileAtPath: audioFilePath.path)!
+
 audio.title = "exampleTitle"
 audio.artist = "exampleArtist"
 audio.album = "exampleAlbum"
@@ -39,9 +40,17 @@ audio.comment = "exampleComment"
 audio.genre = "exampleGenre"
 audio.year = 2001
 audio.track = 1
+audio.updateTag("ALBUMARTIST", stringValue: "exampleAlbumArtist")
+audio.updateTag("DISCNUMBER", stringValue: "1")
+audio.updateTag("TOTALDISCS", stringValue: "2")
+audio.updateTag("TOTALTRACKS", stringValue: "15")
 audio.frontCoverPicture = imageData
 audio.artistPicture = imageData
+
 audio.save()
+
+audio.audioProperties.forEach { print("newAudio.audioProperties key -> \($0) value -> \($1)") }
+audio.allTags.forEach { print("newAudio.allTags key -> \($0) value -> \($1)") }
 ```
 
 *Currently only a Flac and MPEG/MP3 wrapper are included...*
@@ -57,6 +66,9 @@ target 'MyApp' do
   pod 'TagLibIOS'
 end
 ```
+
+## History
+2019-10-30 - Expanded tag support to provide access to all tags in the audio file.  Also exposed the audioProperties for the audio file.
 
 ## License
 
