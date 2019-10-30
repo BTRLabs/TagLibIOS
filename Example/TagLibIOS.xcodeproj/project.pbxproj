@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1466F484236A2DA600974747 /* audio.aif in Resources */ = {isa = PBXBuildFile; fileRef = 1466F483236A2DA600974747 /* audio.aif */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1466F483236A2DA600974747 /* audio.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = audio.aif; sourceTree = "<group>"; };
 		37B0D91A39A2588941FDBFC9 /* Pods-TagLibIOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TagLibIOS_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TagLibIOS_Example/Pods-TagLibIOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4B8905E79E2F2424F70F95A7 /* Pods_TagLibIOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TagLibIOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* TagLibIOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TagLibIOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 		B9E157072128272800251C80 /* files */ = {
 			isa = PBXGroup;
 			children = (
+				1466F483236A2DA600974747 /* audio.aif */,
 				B9E1573A212B5DDA00251C80 /* audio.mp3 */,
 				B9E1570521279CB100251C80 /* coverArt.png */,
 				B9E1570321277D8C00251C80 /* audio.flac */,
@@ -265,6 +268,7 @@
 				B9E1570621279CB100251C80 /* coverArt.png in Resources */,
 				B9E1573B212B5DDB00251C80 /* audio.mp3 in Resources */,
 				B9E1570421277D8C00251C80 /* audio.flac in Resources */,
+				1466F484236A2DA600974747 /* audio.aif in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,

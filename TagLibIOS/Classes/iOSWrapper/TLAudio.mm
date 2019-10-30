@@ -6,9 +6,12 @@
 //  Copyright (c) 2018 lemonhead94. All rights reserved.
 //
 
+#include "tstring.h"
+
 #import "TLAudio.h"
 #import "TLFlac.h"
 #import "TLMP3.h"
+#import "TLAIFF.h"
 
 @interface TLAudio () {
     TLAudio *file;
@@ -129,11 +132,23 @@
     const char flac[4] = {0x66, 0x4C, 0x61, 0x43};
     const char mp3_1[3] = {0x49, 0x44, 0x33};
     const char mp3_2[2] = {static_cast<char>(0xFF), 0xF};
+    
+    TagLib::String s([path UTF8String]);
+    TagLib::String ext;
+    const int pos = s.rfind(".");
+    if (pos != -1)
+      ext = s.substr(pos + 1).upper();
 
     if (!memcmp(bytes, flac, 4)) {
         file = [[TLFlac alloc] initWithFileAtPath: path];
+    } else if (ext == "FLAC") {
+        file = [[TLFlac alloc] initWithFileAtPath: path];
     } else if (!memcmp(bytes, mp3_1, 3) || !memcmp(bytes, mp3_2, 2)) {
         file = [[TLMP3 alloc] initWithFileAtPath: path];
+    } else if (ext == "MP3") {
+        file = [[TLMP3 alloc] initWithFileAtPath: path];
+    } else if (ext == "AIF" || ext == "AIFF" || ext == "AFC" || ext == "AIFC") {
+        file = [[TLAIFF alloc] initWithFileAtPath: path];
     }
 }
 

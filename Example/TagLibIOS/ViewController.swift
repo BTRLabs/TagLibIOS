@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let fileManager = FileManager.default
-        let audioExtension = "flac"
+        let audioExtension = "aif"
         let audioFilePath = getDocumentsDirectory().appendingPathComponent("\(randomString(length: 5)).\(audioExtension)")
         
         let resourcePath = URL(fileURLWithPath: Bundle.main.path(forResource: "audio", ofType: audioExtension)!)
@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         print("--- Original File - \(resourcePath.lastPathComponent)")
         print("--------------------------------------------------------------------------------------")
         let audio = TLAudio(fileAtPath: audioFilePath.path)!
-        audio.audioProperties.forEach { print("audio.audioProperties key -> \($0) value -> \($1)") }
-        audio.allTags.forEach { print("audio.allTags key -> \($0) value -> \($1)") }
+        audio.audioProperties?.forEach { print("audio.audioProperties key -> \($0) value -> \($1)") }
+        audio.allTags?.forEach { print("audio.allTags key -> \($0) value -> \($1)") }
         print("audio.frontCoverPicture.byteCount = \(audio.frontCoverPicture?.count ?? 0)")
         print("audio.artistPicture.byteCount = \(audio.artistPicture?.count ?? 0)")
         
@@ -64,24 +64,24 @@ class ViewController: UIViewController {
         print("--- Edited File - \(audioFilePath.lastPathComponent)")
         print("--------------------------------------------------------------------------------------")
         let newAudio = TLAudio(fileAtPath: audioFilePath.path)!
-        newAudio.audioProperties.forEach { print("newAudio.audioProperties key -> \($0) value -> \($1)") }
-        newAudio.allTags.forEach { print("newAudio.allTags key -> \($0) value -> \($1)") }
+        newAudio.audioProperties?.forEach { print("newAudio.audioProperties key -> \($0) value -> \($1)") }
+        newAudio.allTags?.forEach { print("newAudio.allTags key -> \($0) value -> \($1)") }
         print("newAudio.frontCoverPicture.byteCount = \(newAudio.frontCoverPicture?.count ?? 0)")
         print("newAudio.artistPicture.byteCount = \(newAudio.artistPicture?.count ?? 0)")
 
-        print("newAudio.title = \(newAudio.title!)")
-        print("newAudio.artist = \(newAudio.artist!)")
-        print("newAudio.album = \(newAudio.album!)")
-        print("newAudio.comment = \(newAudio.comment!)")
-        print("newAudio.genre = \(newAudio.genre!)")
-        print("newAudio.year = \(newAudio.year!)")
-        print("newAudio.track = \(newAudio.track!)")
+        print("newAudio.title = \(newAudio.title ?? "")")
+        print("newAudio.artist = \(newAudio.artist ?? "")")
+        print("newAudio.album = \(newAudio.album ?? "")")
+        print("newAudio.comment = \(newAudio.comment ?? "")")
+        print("newAudio.genre = \(newAudio.genre ?? "")")
+        print("newAudio.year = \(newAudio.year ?? 0)")
+        print("newAudio.track = \(newAudio.track ?? 0)")
         //--- some tag editors store the following with a space, some don't, both work, so...
-        print("newAudio.allTags[\"ALBUMARTIST\"] = \(newAudio.allTags["ALBUMARTIST"] ?? "")")
-        print("newAudio.allTags[\"ALBUM ARTIST\"] = \(newAudio.allTags["ALBUM ARTIST"] ?? "")")
-        print("newAudio.allTags[\"DISCNUMBER\"] = \(newAudio.allTags["DISCNUMBER"] ?? "")")
-        print("newAudio.allTags[\"TOTALDISCS\"] = \(newAudio.allTags["TOTALDISCS"] ?? "")")
-        print("newAudio.allTags[\"TOTALTRACKS\"] = \(newAudio.allTags["TOTALTRACKS"] ?? "")")
+        print("newAudio.allTags[\"ALBUMARTIST\"] = \(newAudio.allTags?["ALBUMARTIST"] ?? "")")
+        print("newAudio.allTags[\"ALBUM ARTIST\"] = \(newAudio.allTags?["ALBUM ARTIST"] ?? "")")
+        print("newAudio.allTags[\"DISCNUMBER\"] = \(newAudio.allTags?["DISCNUMBER"] ?? "")")
+        print("newAudio.allTags[\"TOTALDISCS\"] = \(newAudio.allTags?["TOTALDISCS"] ?? "")")
+        print("newAudio.allTags[\"TOTALTRACKS\"] = \(newAudio.allTags?["TOTALTRACKS"] ?? "")")
     }
     
     override func didReceiveMemoryWarning() {
