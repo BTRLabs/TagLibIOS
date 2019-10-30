@@ -49,8 +49,8 @@ audio.artistPicture = imageData
 
 audio.save()
 
-audio.audioProperties.forEach { print("newAudio.audioProperties key -> \($0) value -> \($1)") }
-audio.allTags.forEach { print("newAudio.allTags key -> \($0) value -> \($1)") }
+audio.audioProperties.forEach { print("audio.audioProperties key -> \($0) value -> \($1)") }
+audio.allTags.forEach { print("audio.allTags key -> \($0) value -> \($1)") }
 ```
 
 *Currently only a Flac and MPEG/MP3 wrapper are included...*
@@ -68,7 +68,9 @@ end
 ```
 
 ## History
-2019-10-30 - Expanded tag support to provide access to all tags in the audio file.  Also exposed the audioProperties for the audio file.
+2019-10-30
+- Expanded tag support to provide access to all tags in the audio file. See this for details -> [TagLib PropertyMap Keys](https://taglib.org/api/classTagLib_1_1PropertyMap.html).
+- Exposed the audioProperties for the audio file
 
 ## License
 
