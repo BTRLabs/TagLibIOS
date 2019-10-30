@@ -11,6 +11,8 @@
 #endif
 
 #import "TLAudio.h"
+#import "TLFlac.h"
+#import "TLMP3.h"
 
 FOUNDATION_EXPORT double TagLibIOSVersionNumber;
 FOUNDATION_EXPORT const unsigned char TagLibIOSVersionString[];

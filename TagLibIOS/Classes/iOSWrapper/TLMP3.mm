@@ -225,8 +225,8 @@ static inline TagLib::String TLStr(NSString *_string) {
     
     const char bmp[2] = {'B', 'M'};
     const char gif[3] = {'G', 'I', 'F'};
-    const char swf[3] = {'F', 'W', 'S'};
-    const char swc[3] = {'C', 'W', 'S'};
+//    const char swf[3] = {'F', 'W', 'S'};
+//    const char swc[3] = {'C', 'W', 'S'};
     const char jpg[3] = {static_cast<char>(0xff), static_cast<char>(0xd8), static_cast<char>(0xff)};
     const char psd[4] = {'8', 'B', 'P', 'S'};
     const char iff[4] = {'F', 'O', 'R', 'M'};
