@@ -13,6 +13,8 @@
 #include "id3v2frame.h"
 #include "id3v2header.h"
 #include "attachedpictureframe.h"
+#include "tpropertymap.h"
+#include <iomanip>
 
 using namespace TagLib;
 
@@ -47,6 +49,34 @@ static inline TagLib::String TLStr(NSString *_string) {
         }
     }
     return self;
+}
+
+- (NSDictionary *)audioProperties {
+    TagLib::MPEG::Properties *props = self->file->audioProperties();
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:@"MP3" forKey:@"FILETYPE"];
+    [dict setObject:[NSNumber numberWithInt:props->bitrate()] forKey:@"BITRATE"];
+    [dict setObject:[NSNumber numberWithInt:16] forKey:@"BITSPERSAMPLE"];
+    [dict setObject:[NSNumber numberWithInt:props->channels()] forKey:@"CHANNELS"];
+    [dict setObject:[NSNumber numberWithInt:props->lengthInMilliseconds()] forKey:@"LENGTHINMILLISECONDS"];
+    [dict setObject:[NSNumber numberWithInt:props->sampleRate()] forKey:@"SAMPLERATE"];
+    return dict;
+}
+
+- (NSDictionary *)allTags {
+    TagLib::PropertyMap tags = self->file->properties();
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    for (TagLib::PropertyMap::Iterator i = tags.begin(); i != tags.end(); ++i) {
+        [dict setObject:[NSString stringWithUTF8String:i->second.toString().toCString(true)]
+                 forKey:[NSString stringWithUTF8String:i->first.toCString(true)]];
+    }
+    return dict;
+}
+
+- (void)updateTag:(NSString *)key stringValue:(NSString <NSCopying> *)value {
+    TagLib::PropertyMap map = file->properties();
+    map.replace(TagLib::String(std::string([key UTF8String])), TagLib::String(std::string([value UTF8String])));
+    file->setProperties(map);
 }
 
 - (NSString *)title {
@@ -121,6 +151,16 @@ static inline TagLib::String TLStr(NSString *_string) {
 
 - (void)setFrontCoverPicture:(NSData *)data {
     if (data != nil && [data length] > 0) {
+        //--- need to remove any existing Picture first or the save doesn't actually work
+        TagLib::ID3v2::FrameList frameList = file->ID3v2Tag()->frameListMap()["APIC"];
+        TagLib::ID3v2::FrameList::Iterator it;
+        for (it = frameList.begin(); it != frameList.end(); ++it) {
+            TagLib::ID3v2::AttachedPictureFrame *picture = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame *>(*it);
+            if(picture->type() == TagLib::ID3v2::AttachedPictureFrame::FrontCover) {
+                file->ID3v2Tag()->removeFrame(picture);
+            }
+        }
+
         TagLib::ID3v2::AttachedPictureFrame *picture = new TagLib::ID3v2::AttachedPictureFrame();
         TagLib::ByteVector bv = ByteVector((const char *)[data bytes], (int)[data length]);
         picture->setPicture(bv);
@@ -150,6 +190,16 @@ static inline TagLib::String TLStr(NSString *_string) {
 
 - (void)setArtistPicture:(NSData *)data {
     if (data != nil && [data length] > 0) {
+        //--- need to remove any existing Picture first or the save doesn't actually work
+        TagLib::ID3v2::FrameList frameList = file->ID3v2Tag()->frameListMap()["APIC"];
+        TagLib::ID3v2::FrameList::Iterator it;
+        for (it = frameList.begin(); it != frameList.end(); ++it) {
+            TagLib::ID3v2::AttachedPictureFrame *picture = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame *>(*it);
+            if(picture->type() == TagLib::ID3v2::AttachedPictureFrame::Artist) {
+                file->ID3v2Tag()->removeFrame(picture);
+            }
+        }
+
         TagLib::ID3v2::AttachedPictureFrame *picture = new TagLib::ID3v2::AttachedPictureFrame();
         TagLib::ByteVector bv = ByteVector((const char *)[data bytes], (int)[data length]);
         picture->setPicture(bv);

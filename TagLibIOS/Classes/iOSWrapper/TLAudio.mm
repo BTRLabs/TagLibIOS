@@ -31,6 +31,18 @@
     return self;
 }
 
+- (NSDictionary *)audioProperties {
+    return file.audioProperties;
+}
+
+- (NSDictionary *)allTags {
+    return file.allTags;
+}
+
+- (void)updateTag:(NSString *)key stringValue:(NSString <NSCopying> *)value {
+    [file updateTag:key stringValue:value];
+}
+
 - (NSString *)title {
     return file.title;
 }

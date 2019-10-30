@@ -15,6 +15,12 @@
 
 @property (readonly)  NSString *path;
 
+@property (nonatomic) NSDictionary *audioProperties;
+@property (nonatomic) NSDictionary *allTags;
+/// See the Detailed Description section of the following page for the list of valid keys
+///  https://taglib.org/api/classTagLib_1_1PropertyMap.html
+- (void)updateTag:(NSString *)key stringValue:(NSString <NSCopying> *)value;
+
 // Wrappers
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *artist;
