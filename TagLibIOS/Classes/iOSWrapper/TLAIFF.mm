@@ -40,7 +40,6 @@ static inline TagLib::String TLStr(NSString *_string) {
 @synthesize path=_path;
 
 - (instancetype)initWithFileAtPath:(NSString *)path {
-    printf("TLAIFF.initWithFileAtPath");
     if (self = [super init]) {
         _path = path;
         
@@ -50,10 +49,6 @@ static inline TagLib::String TLStr(NSString *_string) {
         }
     }
     return self;
-}
-
-- (NSString *)version {
-    return @"1.0.1";
 }
 
 - (NSDictionary *)audioProperties {
