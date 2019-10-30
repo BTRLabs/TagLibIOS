@@ -51,8 +51,8 @@ class ViewController: UIViewController {
         
         let imageDataURL = URL(fileURLWithPath: Bundle.main.path(forResource: "coverArt", ofType: "png")!)
         if let image = UIImage(contentsOfFile: imageDataURL.path) {
-            audio.frontCoverPicture = UIImageJPEGRepresentation(image, 0.95)
-            audio.artistPicture = UIImageJPEGRepresentation(image, 0.95)
+            audio.frontCoverPicture = image.jpegData(compressionQuality: 0.95)
+            audio.artistPicture = image.jpegData(compressionQuality: 0.95)
         }
         
         let status = audio.save()
