@@ -1,3 +1,8 @@
+Example/TagLibIOS/*.aif
+Example/TagLibIOS/*.mp3
+Example/TagLibIOS/*.png
+Example/TagLibIOS/*.flac
+
 # OS X
 .DS_Store
 
