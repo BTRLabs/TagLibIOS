@@ -17,6 +17,8 @@ class ViewController: UIViewController {
         
         let fileManager = FileManager.default
         let audioExtension = "aif"
+//        let audioExtension = "flac"
+//        let audioExtension = "mp3"
         let audioFilePath = getDocumentsDirectory().appendingPathComponent("\(randomString(length: 5)).\(audioExtension)")
         
         let resourcePath = URL(fileURLWithPath: Bundle.main.path(forResource: "audio", ofType: audioExtension)!)
@@ -35,16 +37,16 @@ class ViewController: UIViewController {
         print("audio.frontCoverPicture.byteCount = \(audio.frontCoverPicture?.count ?? 0)")
         print("audio.artistPicture.byteCount = \(audio.artistPicture?.count ?? 0)")
         
-        audio.title = "exampleTitle"
-        audio.artist = "exampleArtist"
-        audio.album = "exampleAlbum"
-        audio.comment = "exampleComment"
-        audio.genre = "exampleGenre"
+        audio.title = "exampleTitle - ТаґЛибіОС"
+        audio.artist = "exampleArtist - ТаґЛибіОС"
+        audio.album = "exampleAlbum - ТаґЛибіОС"
+        audio.comment = "exampleComment - ТаґЛибіОС"
+        audio.genre = "exampleGenre - ТаґЛибіОС"
         audio.year = 2001
         audio.track = 1
         //--- some tag editors store the album artist with a space, some don't, both work, so...
-        audio.updateTag("ALBUMARTIST", stringValue: "exampleAlbumArtist")
-        audio.updateTag("ALBUM ARTIST", stringValue: "example Album Artist")
+        audio.updateTag("ALBUMARTIST", stringValue: "exampleAlbumArtist - ТаґЛибіОС")
+        audio.updateTag("ALBUM ARTIST", stringValue: "example Album Artist - ТаґЛибіОС")
         audio.updateTag("DISCNUMBER", stringValue: "1")
         audio.updateTag("TOTALDISCS", stringValue: "2")
         audio.updateTag("TOTALTRACKS", stringValue: "15")

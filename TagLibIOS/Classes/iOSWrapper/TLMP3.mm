@@ -75,7 +75,7 @@ static inline TagLib::String TLStr(NSString *_string) {
 
 - (void)updateTag:(NSString *)key stringValue:(NSString <NSCopying> *)value {
     TagLib::PropertyMap map = file->properties();
-    map.replace(TagLib::String(std::string([key UTF8String])), TagLib::String(std::string([value UTF8String])));
+    map.replace(TLStr(key), TLStr(value));
     file->setProperties(map);
 }
 
